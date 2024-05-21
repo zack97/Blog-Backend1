@@ -5,6 +5,7 @@ import postRoutes from "./routes/posts.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import { getPosts } from "./controlers/post.js";
 
 const app = express();
 
@@ -35,9 +36,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth/posts", postRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the API");
-});
+app.get("/", getPosts);
+
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
