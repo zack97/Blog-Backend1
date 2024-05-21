@@ -22,10 +22,10 @@ export const getPosts = (req, res) => {
 
 export const getPost = (req, res) => {
   const q = `
-    SELECT p.id, u.username,u.img AS userImg, p.title, p.description, p.img, p.cat, p.date
-    FROM users u
-    JOIN posts p ON u.id = p.uid
-    WHERE p.id = $1
+  SELECT p.id, u.username, p.title, p.description, p.img, p.cat, p.date
+  FROM users u
+  JOIN posts p ON u.id = p.uid
+  WHERE p.id = $1
   `;
 
   pool.query(q, [req.params.id], (err, result) => {
