@@ -5,7 +5,7 @@ import postRoutes from "./routes/posts.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
-import { getPosts } from "./controlers/post.js";
+import { getPost, getPosts } from "./controlers/post.js";
 
 const app = express();
 
@@ -35,8 +35,7 @@ app.post("/api/auth/upload", upload.single("file"), function (req, res) {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth/posts", postRoutes);
-
-app.get("/", getPosts);
+app.use("/", getPosts);
 
 const PORT = process.env.PORT || 8000;
 
